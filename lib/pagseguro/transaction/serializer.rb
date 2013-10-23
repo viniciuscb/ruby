@@ -86,8 +86,10 @@ module PagSeguro
 
       def serialize_shipping(data)
         shipping = {
-          type_id: xml.css("shipping > type").text,
-          cost: BigDecimal(xml.css("shipping > cost").text),
+          #type_id: xml.css("shipping > type").text,
+          type_id: xml.css('type').last.text,
+          cost: xml.css('cost').last.text
+          #cost: BigDecimal(xml.css("shipping > cost").text),
         }
 
         serialize_address(shipping)
